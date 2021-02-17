@@ -1,0 +1,88 @@
+			program
+part1(index.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="MyHttpServlet1"  method ="GET">  
+Name:<input type="text" name="userName"/><br/>  
+<input type="submit" value="go"/>  
+</form>  
+
+
+
+</body>
+</html>
+
+
+part2(MyHttpServlet1.java)
+
+import java.io.*;  
+
+
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/MyHttpServlet1")
+public class MyHttpServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html");  
+        PrintWriter out = response.getWriter();  
+          
+        String n=request.getParameter("userName");  
+        out.print("Welcome "+n);  
+  
+        //appending the username in the query string  
+        out.print("<a href='MyHttpServlet2?uname="+n+"'>visit</a>");  
+                  
+        out.close();  
+	
+	}
+
+}
+
+part3(MyHttpServlet2.java)
+
+import java.io.*;  
+
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/MyHttpServlet2")
+public class MyHttpServlet2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+  
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 response.setContentType("text/html");  
+	        PrintWriter out = response.getWriter();  
+	          
+	        //getting value from the query string  
+	        String n=request.getParameter("uname");  
+	        out.print("Hello "+n);  
+	  
+		
+		
+	}
+
+} 

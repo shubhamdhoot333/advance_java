@@ -1,0 +1,142 @@
+program 
+
+part1( index.jsp)
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="ControllerServlet"  method="GET">
+username<input type="text" name="name"><br>
+password<input type="text" name="password">
+		<input type="submit" name="submit">
+</form>
+
+
+</body>
+</html>
+
+
+part2(ControllerServlet.java)
+
+package com.myapp8;
+import java.io.IOException;  
+import java.io.PrintWriter;  
+import javax.servlet.RequestDispatcher; 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ControllerServlet")
+public class ControllerServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		 response.setContentType("text/html");
+		 PrintWriter pw = response.getWriter();  
+		  
+			String name=request.getParameter("name"); 
+			String password=request.getParameter("password");
+	
+
+		LoginBean bean=new LoginBean();
+		bean.setName(name);
+		bean.setPassword(password);
+		request.setAttribute("bean",bean);
+		
+		boolean status = bean.validate();
+		if(status)
+		{
+			RequestDispatcher dis =request.getRequestDispatcher("/login.jsp");
+			dis.forward(request,response);
+			
+		}
+		else
+		{
+			RequestDispatcher dis =request.getRequestDispatcher("/login_error.jsp");
+			dis.forward(request,response);
+		}
+}
+}
+
+
+part3(LoginBean.java )
+package com.myapp8;
+
+public class LoginBean {
+	private String name,password;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean validate()
+	{
+		if(password.equals("admin"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+}
+
+part4(login.jsp)
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import = "com.myapp8.LoginBean" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Success</title>
+</head>
+<body>
+<h1> you are login successful</h1>
+<%
+LoginBean bean=(LoginBean)request.getAttribute("bean");
+out.print("welcome"+bean.getName());
+
+%>
+</body>
+</html>
+
+part5(login_error.jsp)
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Error</title>
+</head>
+<body>
+<h1>sorry usernamw or password not right</h1>
+<%@include file="index.jsp" %>
+</body>
+</html>
+

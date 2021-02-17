@@ -1,0 +1,106 @@
+				program 1
+index.html(part1)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>user_name</title>
+</head>
+<body>
+
+<form action="MyHttpServlet1" method="GET">  
+Enter your name<input type="text" name="name"><br>  
+<input type="submit" value="login">  
+</form>  
+
+
+</body>
+</html>
+
+MyHttpServlet1.java(part2)
+
+mport java.io.*;  
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/MyHttpServlet1")
+public class MyHttpServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		res.setContentType("text/html");  
+		PrintWriter pw = res.getWriter();  
+		  
+		String name=req.getParameter("name");//will return value  
+		pw.println("Welcome "+name);  
+		  
+		pw.close();  
+		
+	}
+
+}
+
+				program 2
+//check box data handle
+part1(index.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>user_name</title>
+</head>
+<body>
+
+<form action="MyHttpServlet1" method="GET">  
+
+ <input type = "checkbox" name = "maths" checked = "checked" > Maths
+         <input type = "checkbox" name = "physics" > Physics 
+<input type="submit" value="login">  
+</form>  
+
+
+</body>
+</html>
+
+part2(MyHttpServlet1.java)
+
+
+import java.io.*;  
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/MyHttpServlet1")
+public class MyHttpServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		res.setContentType("text/html");  
+		PrintWriter pw = res.getWriter();  
+		  
+		String name1=req.getParameter("maths");
+		String name2=req.getParameter("physics");//will return value  
+		pw.println("maths is  "+ name1);  
+		pw.println("physics is  "+ name2);   
+		pw.close();  
+		
+	}
+
+}
+

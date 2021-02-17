@@ -1,0 +1,82 @@
+program1
+
+part1(index.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="GET" action="welcome.jsp">
+username  <input type="text" name="name">
+value      <input type="text" name="value">
+		<input type="submit" name="submit">
+
+
+</form>
+</body>
+</html>
+
+
+part2(welcome.jsp)
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import=" myapp6.UserName"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <jsp:useBean id="user" class="myapp6.UserName"></jsp:useBean>
+  <jsp:setProperty name ="user" property = "*" />
+  
+ <p> Name: 
+         <jsp:getProperty name = "user" property = "name"/>
+      </p>
+      
+      <p>value: 
+         <jsp:getProperty name = "user" property = "value"/>
+      </p>
+      
+ 
+ 
+
+
+
+
+</body>
+</html>
+
+part3(UserName.java)
+
+package myapp6;
+
+public class UserName {
+	
+	private String name;
+	private	int value;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+  
+
+}
+
+
+
+it in src folder of ellips in we are create a java package which is myapp6 which in create a
+ java file which is UserName.java 

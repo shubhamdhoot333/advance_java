@@ -1,0 +1,94 @@
+set cookies and get cooking from server and displat to screen 
+
+			program 1
+
+		part1(index.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>user_name</title>
+</head>
+<body>
+
+<form action="MyHttpServlet1" method="POST">  
+
+user name <input type = "text" name = "user" >
+         	<input type="submit" value="login">  
+</form>  
+
+
+</body>
+</html>
+
+
+part2(MyHttpServlet1.java)
+
+
+
+import java.io.*;  
+  
+import javax.servlet.http.*;  
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/MyHttpServlet1")
+public class MyHttpServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		res.setContentType("text/html");  
+		PrintWriter pw = res.getWriter();  
+		  
+		String name=req.getParameter("user");
+		pw.println("welcome   "+ name);  
+		  
+		Cookie ck=new Cookie("uname",name);
+		res.addCookie(ck);
+		 pw.print("<form action='MyHttpServlet2' method='POST'>");  
+		    pw.print("<input type='submit' value='go'>");  
+		    pw.print("</form>");  
+		          
+		pw.close();  
+		
+	}
+
+part3(MyHttpServlet2.java)
+
+
+import java.io.*;  
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;  
+import javax.servlet.http.*;  
+
+@WebServlet("/MyHttpServlet2")
+public class MyHttpServlet2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");  
+	    PrintWriter out = response.getWriter();  
+	      
+	    Cookie ck[]=request.getCookies();  
+	    out.print("Hello "+ck[0].getValue());  
+	  
+	    out.close();  
+	}
+
+}
+
+

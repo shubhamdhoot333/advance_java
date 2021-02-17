@@ -1,0 +1,188 @@
+
+
+					 (program2)
+
+
+ (part1)-->>MyFirstHttpServlet.java
+
+import javax.servlet.http.*;
+import java.io.*;
+import javax.servlet.*;
+
+public class MyFirstHttpServlet extends HttpServlet
+{
+public void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		 resp.setContentType("text/html");
+
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body>");
+		for(int i=1;i<=6;i++)
+		{
+		out.println("<h"+i+">shubham</h"+i+">");
+		}
+		out.println("</body></html>");
+} 
+}
+
+
+(part 2)web.xml
+
+<web-app>
+<servlet>
+   <servlet-name>MyFirstHttpServlet</servlet-name>
+   <servlet-class>MyFirstHttpServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>MyFirstHttpServlet</servlet-name>
+   <url-pattern>/MyFirstHttpServlet</url-pattern>
+</servlet-mapping>
+</web-app>
+
+
+
+						(program 3)
+
+(part1) myhttpservlet.java
+ //html  <a> tage to request  a servlet page to browser 
+import javax.servlet.http.*;
+import java.io.*;
+import javax.servlet.*;
+
+public class MyHttpServlet3 extends HttpServlet
+{
+public void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		 resp.setContentType("text/html");
+
+		PrintWriter out = resp.getWriter();
+      out.println("<html><body bgcolor='red'> ");
+	  out.println("hello and welcome to http ");
+	  out.println("</body></html>");
+} 
+}
+
+
+part2(mypage2.html)
+
+<html>
+<head>
+	<title>mypage1</title>
+
+</head>
+<body>
+<h3>welcome to html  demo page</h3>
+<a href="MyServlet3">to request servlet click here</a>
+
+</body>
+</html>
+
+part3(web.xml)
+
+<web-app>
+<servlet>
+   <servlet-name>MyHttpServlet3</servlet-name>
+   <servlet-class>MyHttpServlet3</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>MyHttpServlet3</servlet-name>
+   <url-pattern>/MyServlet3</url-pattern>
+</servlet-mapping>
+</web-app>
+
+					program 4
+//html <form> tag in get to send servlet request 
+part1(MyHttpServlet4.java)
+import javax.servlet.http.*;
+import java.io.*;
+import javax.servlet.*;
+
+public class MyHttpServlet4 extends HttpServlet
+{
+public void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		 resp.setContentType("text/html");
+
+		resp.getWriter().println("hello and welcome to http ");
+	  
+} 
+}
+
+part2(mypage1.html)
+
+<html>
+<head>
+	<title>mypage1</title>
+
+</head>
+<body>
+<form  action="MyServlet4" method="GET">
+ to request Servlet click this button<input type="submit">
+
+
+</form>
+</body>
+</html>
+
+part3(web.xml)
+
+<web-app>
+<servlet>
+   <servlet-name>MyHttpServlet4</servlet-name>
+   <servlet-class>MyHttpServlet4</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>MyHttpServlet4</servlet-name>
+   <url-pattern>/MyServlet4</url-pattern>
+</servlet-mapping>
+</web-app>
+
+							program 5
+//html <form> tag in get to send servlet request 
+part1(MyHttpServlet5.java)
+import javax.servlet.http.*;
+import java.io.*;
+import javax.servlet.*;
+
+public class MyHttpServlet5 extends HttpServlet
+{
+public void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		 resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+      out.println("<html><body bgcolor='red'> ");
+	  out.println("hello and welcome to http ");
+	  out.println("</body></html>");
+} 
+}
+
+
+part2(mypage1.html)
+
+<html>
+<head>
+	<title>mypage1</title>
+
+</head>
+<body>
+<form  action="MyServlet5" method="POST">
+ to request Servlet click this button<input type="submit">
+
+
+</form>
+</body>
+</html>
+
+part 3(web.xml)
+
+<web-app>
+<servlet>
+   <servlet-name>MyHttpServlet5</servlet-name>
+   <servlet-class>MyHttpServlet5</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>MyHttpServlet5</servlet-name>
+   <url-pattern>/MyServlet5</url-pattern>
+</servlet-mapping>
+</web-app>
+

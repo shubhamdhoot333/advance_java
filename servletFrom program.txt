@@ -1,0 +1,49 @@
+program1
+part1(MyHttpServlet6)
+//servlet to get form data 
+import javax.servlet.http.*;
+import java.io.*;
+import javax.servlet.*;
+
+
+public class MyHttpServlet6 extends HttpServlet
+{
+public void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		 resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body>");
+		out.println(req.getParameter("first_name")+"\n");
+		out.println(req.getParameter("last_name"));
+		out.println("</body></html>");
+		}
+		}
+		
+part2(mypage.html)
+<html>
+	<head>
+		<title>userdata</title>
+
+	</head>
+ <body>
+      <form   action="MyHttpServlet6" method ="GET">
+         First Name: <input type = "text"  name = "first_name">
+         <br>
+         Last Name: <input type = "text" name = "last_name" ><br>
+         <input type = "submit" value = "Submit">
+      </form>
+   </body>
+</html>
+
+part3(web.xml)
+
+<web-app>
+<servlet>
+   <servlet-name>MyHttpServlet6</servlet-name>
+   <servlet-class>MyHttpServlet6</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>MyHttpServlet6</servlet-name>
+   <url-pattern>/MyHttpServlet6</url-pattern>
+</servlet-mapping>
+</web-app>
